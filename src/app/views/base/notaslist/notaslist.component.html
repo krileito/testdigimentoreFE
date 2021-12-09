@@ -1,0 +1,91 @@
+<div  class="container">
+    <div class="jumbotron bg-dark text-white" >
+      <h1>Crear nueva nota <small>...!</small><i class="fa fa-list" aria-hidden="true"></i></h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="btn-group">
+            <button type="button" class="btn btn-block btn-success"  
+            (click)="guardar()">Guardar</button>
+            <!-- <button type="button" class="btn btn-primary">Editar</button> -->
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-md-3 col-lg-5"> 
+        <label for="usr">Estudiantes:</label>
+              <select  [(ngModel)]="selectedOption1" id="select1" name="select1" (ngModelChange)="onChangeObj($event)" (ngModelChange)="buscar(selectedOption1.id)" class="form-control">
+                <option *ngFor="let row of listestudiantes" [ngValue]="row">{{row.nombres}}</option> 
+              </select>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3 col-lg-5">
+        
+        <input type="hidden" class="form-control" [(ngModel)]="datos.id" placeholder="Ingrese nombre" name="datos.id">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-lg-5">
+        <label for="usr">Nombre Estudiante:</label>
+        <input type="text" [disabled]="true" class="form-control" [(ngModel)]="datos.nombre_est" placeholder="Ingrese nombre" name="datos.nombre_est">
+    </div> 
+    <div class="col-md-3 col-lg-5">
+        <label for="usr">Apellido Estudiante:</label>
+        <input type="text"  [disabled]="true" class="form-control" [(ngModel)]="datos.apellido_est" placeholder="Ingrese nombre" name="datos.apellido_est">
+    </div>
+   <div class="col-md-3 col-lg-5">
+        <label for="usr">Nota 1:</label>
+        <input type="text" class="form-control" [(ngModel)]="datos.nota1" placeholder="Ingrese nota 1" name="datos.nota1">
+    </div> 
+    <div class="col-md-3 col-lg-5">
+        <label for="usr">Nota 2:</label>
+        <input type="text" class="form-control" [(ngModel)]="datos.nota2" placeholder="Ingrese nota 2" name="datos.nota2">
+    </div> 
+    <div class="col-md-3 col-lg-5">
+        <label for="usr">Nota 3:</label>
+        <input type="text" class="form-control" [(ngModel)]="datos.nota3" placeholder="Ingrese nota 3" name="datos.nota3">
+    </div>  
+</div>
+<br>
+<!-- <div class="row">
+    <div class="col-md-3 col-lg-5">
+        <label for="usr">Materia Estudiante:</label>
+        <input type="text" class="form-control" [(ngModel)]="datos.materia_est" placeholder="Ingrese materia" name="datos.materia_est">
+    </div> 
+</div> -->
+
+<div class="row">
+    
+    <div class="col-lg-10">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>nombres</th>
+              <th>nota 1</th>
+              <th>nota 2</th>
+              <th>nota 3</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+            </tr>
+            </thead>
+             <tr *ngFor="let row of listnotas; index as i; trackBy: trackByFn">
+              <td>{{row.id}}</td>
+              <td>{{row.name_estudiante}}</td>
+              <td>{{row.nota1}}</td>
+              <td>{{row.nota2}}</td>
+              <td>{{row.nota3}}</td>
+              <td>{{row.nota1 + row.nota2 +row.nota3}}</td>
+             
+            </tr>  
+          </table>
+      </div>
+      </div>
+</div>

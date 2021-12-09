@@ -1,0 +1,97 @@
+<div  class="container">
+    <div class="jumbotron bg-dark text-white" >
+      <h1>Crear nuevo Profesor <small>...!</small><i class="fa fa-list" aria-hidden="true"></i></h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="btn-group">
+            <button type="button" class="btn btn-block btn-success"  
+            (click)="guardar()">Guardar</button>
+            <!-- <button type="button" class="btn btn-primary">Editar</button> -->
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <br>
+</div>
+<div class="row">
+    <div class="col-md-3 col-lg-5">
+        <label for="usr">Nombre Profesor:</label>
+        <input type="text" class="form-control" [(ngModel)]="datos.nombres_prof" placeholder="Ingrese nombre" name="datos.nombres_prof">
+    </div> 
+    <div class="col-md-3 col-lg-5">
+        <label for="usr">Apellido Profesor:</label>
+        <input type="text" class="form-control" [(ngModel)]="datos.apellido_prof" placeholder="Ingrese apellido" name="datos.apellido_prof">
+    </div> 
+</div>
+
+<br>
+
+<div class="row">
+    
+    <div class="col-lg-10">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>nombres</th>
+              <th>apellidos</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+            </tr>
+            </thead>
+             <tr *ngFor="let row of listprofesores; index as i; trackBy: trackByFn">
+              <td>{{row.id}}</td>
+              <td>{{row.nombres_prof}}</td>
+              <td>{{row.apellido_prof}}</td>
+              <td><button type="button" class="btn btn-block btn-info" 
+                  data-toggle="modal" 
+                  (click)="datos_profesor(row.id,row.nombres_prof,row.apellido_prof)"
+                  (click)="myModal.show()"
+                  >EDIT</button></td>
+              <td><button type="button" class="btn btn-block btn-danger"
+                (click)="borrar(row.id)">DELETE</button></td>
+            </tr>  
+          </table>
+      </div>
+      </div>
+</div>
+
+        <!-- The Modal -->
+        <div  bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+          
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Actualizar Datos</h4>
+                  <button type="button" class="close" data-dismiss="modal" (click)="myModal.hide()">&times;</button>
+                </div>
+          
+                <!-- Modal body -->
+                <div class="modal-body">
+                 <div class="row">
+                    <label for="usr">Oculto:</label>
+                    <input type="text" class="form-control" [(ngModel)]="credential.id" name="credential.id" >
+    
+                    <label for="usr">Nombre:</label>
+                    <input type="text" class="form-control" [(ngModel)]="credential.nombres" name="credential.nombres" >
+    
+                     <label for="usr">apellidos:</label>
+                    <input type="text" class="form-control" [(ngModel)]="credential.apellidos" name="credential.apellidos" >
+
+                 </div>
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal" (click)="updateDatos(credential.id)" (click)="myModal.hide()">Actualizar</button>
+                </div>
+          
+              </div>
+            </div>
+          </div>

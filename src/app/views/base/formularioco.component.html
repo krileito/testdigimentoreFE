@@ -1,0 +1,200 @@
+<!-- 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+
+<form class="form-signin">
+    <div  class="container">
+      <div class="jumbotron" >
+        <h1>Encabezado de página <small>con un texto secundario</small></h1>
+      </div>
+      <div class="container">
+        <div class="row"></div>
+        <div class="col-lg-6">
+          <div class="btn-group">
+            <button type="button" class="btn btn-square btn-block btn-secondary"  
+             data-toggle="modal" (click)="myModalDatos.show()"  >Nuevo</button>
+            <!-- <button type="button" class="btn btn-primary">Editar</button> -->
+          </div>
+          <!-- <label>Your first ng-select</label>
+          <ng-select [items]="lsitprod"
+                     bindLabel="name"
+                     placeholder="Select city"
+                     [(ngModel)]="selectedCity">
+          </ng-select> <p>
+            Selected city: {{selectedCity | json}}
+        </p> -->
+  
+        </div>
+        <div class="col-lg-8">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-dark">
+              <tr>
+                <th>#</th>
+                <th>marca</th>
+                <th>nombre</th>
+                <th>descripcion</th>
+                <th>precio</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+              </tr>
+              </thead>
+              <tr *ngFor="let row of lsitprod; index as i; trackBy: trackByFn">
+                <td>{{row.id}}</td>
+                <td>{{row.marca}}</td>
+                <td>{{row.nombre}}</td>
+                <td>{{row.descripcion}}</td>
+                <td>{{row.precio}}</td>
+                <td><button type="button" class="btn btn-block btn-info" 
+                    data-toggle="modal" 
+                    (click)="datos(row.id,
+                    row.marca,
+                    row.nombre,
+                    row.descripcion,
+                    row.precio)"
+                    (click)="myModal.show()"
+                    >EDIT</button></td>
+                <td><button type="button" class="btn btn-block btn-danger"
+                  (click)="borrar(row.id)">DELETE</button></td>
+              </tr> 
+            </table>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- The Modal -->
+    <div  bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Actualizar Datos</h4>
+            <button type="button" class="close" data-dismiss="modal" (click)="myModal.hide()">&times;</button>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+           <div class="row">
+              <label for="usr">Oculto:</label>
+              <input type="text" class="form-control" [(ngModel)]="credential.id" name="credential.id" >
+          
+              <label for="usr">Nombre:</label>
+              <input type="text" class="form-control" [(ngModel)]="credential.nombre" name="credential.nombre" >
+           
+              <label for="pwd">Marca:</label>
+              <input type="text" class="form-control" [(ngModel)]="credential.marca" name="credential.marca">
+  
+              <label for="des">Descripcion:</label>
+              <input type="text" class="form-control" [(ngModel)]="credential.descripcion" placeholder="Ingrese descripcion" name="credential.descripcion">
+    
+              <label for="pre">Precio:</label>
+              <input type="text" class="form-control" [(ngModel)]="credential.precio" placeholder="Ingrese precio" name="credential.precio">
+            
+  
+           </div>
+          </div>
+    
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click)="updateDatos(credential.id)" (click)="myModal.hide()">Actualizar</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- The Modal -->
+    <div bsModal #myModalDatos="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Ingrese nuevos Datos</h4>
+            <button type="button" class="close" data-dismiss="modal" (click)="myModalDatos.hide()">&times;</button>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+           <div class="row">
+              <label for="pwd">Marca:</label>
+              <input type="text"  class="form-control" [(ngModel)]="credential1.marca" placeholder="Ingrese marca" name="credential1.marca">
+    
+              <label for="usr">Nombre:</label>
+              <input type="text" class="form-control" [(ngModel)]="credential1.nombre" placeholder="Ingrese nombre" name="credential1.nombre">
+    
+              <label for="des">Descripcion:</label>
+              <input type="text" class="form-control" [(ngModel)]="credential1.descripcion" placeholder="Ingrese descripcion" name="credential1.descripcion">
+    
+              <label for="pre">Precio:</label>
+              <input type="text" class="form-control" [(ngModel)]="credential1.precio" placeholder="Ingrese precio" name="credential1.precio">
+            
+           </div>
+          </div>
+          
+            
+        
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="myModalDatos.hide()">Close</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click)="guardar()" (click)="myModalDatos.hide()">Guardar</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+  
+  </form>
+
+  <!-- <google-map width="750px"
+            height="450px"
+            [center]="center"
+            [zoom]="zoom">
+</google-map> -->
+<google-map></google-map>
+
+  <!-- <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-align-justify"></i> Bootstrap Modals
+          </div>
+          <div class="card-body">
+          
+            <button type="button" class="btn btn-secondary mr-1" data-toggle="modal" (click)="myModal.show()">
+              Launch demo modal
+            </button>
+            </div>
+        </div>
+      </div>
+    </div>
+   </div>
+   <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+          <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>  -->
+  
+    
+            

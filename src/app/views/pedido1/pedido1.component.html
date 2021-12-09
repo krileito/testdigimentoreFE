@@ -1,0 +1,59 @@
+<div  class="container">
+    <div class="jumbotron bg-dark text-white" >
+      <h1>Crear nuevo Pedido <small>...!</small><i class="fa fa-shopping-cart" aria-hidden="true"></i></h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <!-- <div class="col-md-3 col-lg-2">
+            <ng-select [items]="items" 
+            bindLabel="name"
+            placeholder="Select item"
+            appendTo="body"
+            multiple="true"
+            [(ngModel)]="selected">
+            </ng-select>
+            <div class="row mt-5">
+                Selected city ID: {{selectedCountryId}}
+            </div>
+        </div> -->
+        <!-- <div class="col-md-3 col-lg-5">
+            <ng-select class="custom"></ng-select>
+        </div> -->
+        <!-- <div class="col-md-3 col-lg-2">
+            <p>
+                <select name="miselect" [(ngModel)]="seleccionado" class="form-control" data-live-search="true">
+                <option [value]="item.apellidos_nombres" *ngFor="let item of listclientes">{{item.apellidos_nombres}}</option>
+                </select>
+                </p>
+                {{seleccionado}}
+                
+        </div> -->
+        <div class="col-md-3 col-lg-5">
+            <label >Cliente:</label>
+            <select class="form-control selectpicker" data-live-search="true"
+             [formControl]="countryCode"   [(ngModel)]="seleccionado" (change)="mico($event.target,value)" >
+                <option *ngFor="let row of listclientes" title="{{row.apellidos_nombres}}"  value={{seleccionado}} >
+                    {{row.apellidos_nombres}}
+                </option>
+          </select>
+        </div>
+        <div class="col-md-3 col-lg-5">
+          kkk  {{seleccionado}}
+        </div>
+        <input type="text" name="" >
+        <div class="col-md-3 col-lg-5">
+            <select [(ngModel)]="opcionSeleccionado" (change)="capturar1()">
+                <option value="0">Selecciona una opción</option>
+                <option *ngFor="let dato of datos1" value={{opcionSeleccionado}}>
+                  {{dato}}
+                </option>
+            </select>
+            
+            <!-- Prueba para ver la opción seleccionado -->
+            <p [hidden]="opcionSeleccionado == '0'">Haz seleccionado la opción # {{ verSeleccion }}</p>
+          </div>
+
+
+    </div>
+</div>

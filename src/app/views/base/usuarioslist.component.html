@@ -1,0 +1,130 @@
+<div  class="container">
+    <div class="jumbotron bg-dark text-white" >
+      <h1>Crear nuevo Usuario <small>...!</small><i class="fa fa-list" aria-hidden="true"></i></h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="btn-group">
+            <button type="button" class="btn btn-block btn-success"  
+            (click)="guardar()">Guardar</button>
+            <!-- <button type="button" class="btn btn-primary">Editar</button> -->
+        </div>
+    </div>
+    <div class="row">
+
+
+        <div class="col-md-3 col-lg-5">
+          
+            <label for="usr">Nombre Usuario:</label>
+            <input type="text" class="form-control" [(ngModel)]="datos.nombre" placeholder="Ingrese nombre" name="datos.nombre">
+        </div>  
+
+        <div class="col-md-3 col-lg-5">
+            <label for="usr">Password:</label>
+            <input type="password" class="form-control" [(ngModel)]="datos.pass" placeholder="Ingrese pasword" name="datos.pass"> 
+        </div>
+        <div class="col-md-3 col-lg-5"> 
+            <label for="usr">email:</label>
+            <input type="email" class="form-control" [(ngModel)]="datos.email" placeholder="Ingrese email" name="datos.email"> 
+        </div>
+   
+       
+    
+    <div class="col-md-3 col-lg-5"> 
+        <label for="usr">Rol:</label>
+              <select  [(ngModel)]="selectedOption1" id="select1" name="select1" class="form-control">
+                <option *ngFor="let country of listroles" [ngValue]="country">{{country.nombre}}</option> 
+              </select>
+    </div>
+</div>
+</div>
+<div class="row">
+    <br>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-10">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>nombre</th>
+              <th>email</th>
+              <th>password</th>
+              <th>rol</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+            </tr>
+            </thead>
+             <tr *ngFor="let row of listusuarios; index as i; trackBy: trackByFn">
+              <td>{{row.id}}</td>
+              <td>{{row.nombre}}</td>
+              <td>{{row.email}}</td>
+              <td>{{row.usuario_password}}</td>
+              <td>{{row.name_rol}}</td>
+              <td><button type="button" class="btn btn-block btn-info" 
+                  data-toggle="modal" 
+                  (click)="datos_user(row.id,row.nombre,row.usuario_password,row.email)"
+                  (click)="myModal.show()"
+                  >EDIT</button></td>
+              <td><button type="button" class="btn btn-block btn-danger"
+                (click)="borrar(row.id)">DELETE</button></td>
+            </tr>  
+          </table>
+      </div>
+      </div>
+
+</div>
+
+
+<!-- (click)="datos(row.id,
+row.marca,
+row.nombre,
+row.descripcion,
+row.precio)" -->
+
+    <!-- The Modal -->
+    <div  bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Actualizar Datos</h4>
+              <button type="button" class="close" data-dismiss="modal" (click)="myModal.hide()">&times;</button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+             <div class="row">
+                <label for="usr">Oculto:</label>
+                <input type="text" class="form-control" [(ngModel)]="credential.id" name="credential.id" >
+
+                <label for="usr">Nombre:</label>
+                <input type="text" class="form-control" [(ngModel)]="credential.nombre" name="credential.nombre" >
+
+                <label for="usr">password:</label>
+                <input type="text" class="form-control" [(ngModel)]="credential.pass" name="credential.pass" >
+
+                <label for="usr">email:</label>
+                <input type="text" class="form-control" [(ngModel)]="credential.email" name="credential.email" >
+
+                <label for="usr">Rol:</label>
+              <select  [(ngModel)]="selectedOption2" id="select2" name="select2" class="form-control">
+                <option *ngFor="let rol of listroles" [ngValue]="rol">{{rol.nombre}}</option> 
+              </select>
+             </div>
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal" (click)="updateDatos(credential.id)" (click)="myModal.hide()">Actualizar</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>

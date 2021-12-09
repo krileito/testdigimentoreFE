@@ -1,0 +1,61 @@
+<div  class="container">
+    <div class="jumbotron bg-dark text-white" >
+      <h1>Crear nuevo Finca <small>...!</small><i class="fa fa-shopping-cart" aria-hidden="true"></i></h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="btn-group">
+            <button type="button" class="btn btn-square btn-block btn-secondary"  
+            (click)="guardar()">Guardar</button>
+            <!-- <button type="button" class="btn btn-primary">Editar</button> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" *ngIf="flase">
+            <label for="usr">Oculto:</label>
+            <input type="text" class="form-control" [(ngModel)]="fincadata.finc_cod_finc" name="finc_cod_finc"  >
+        </div>
+        <div class="col">
+            <label for="usr">Nombre Finca:</label>
+            <input type="text" class="form-control" [(ngModel)]="fincadata.finc_nom_finc" placeholder="Ingrese Nombre Finca" name="finc_nom_finc" >
+        </div>
+        
+        <div class="col">   
+            <label for="pwd">Direccion:</label>
+            <input type="text" class="form-control" [(ngModel)]="fincadata.finc_dir_finc" placeholder="Ingrese Direccion" name="finc_dir_finc">
+        </div>
+        
+        <div class="col">
+            <label for="des">Correo:</label>
+            <input type="text" class="form-control" [(ngModel)]="fincadata.finc_ema_finc" placeholder="Ingrese correo" name="finc_ema_finc">
+        </div>
+       
+        <div class="col">
+            <label for="pre">Telefono:</label>
+            <input type="text" class="form-control" [(ngModel)]="fincadata.finc_tlf_finc" placeholder="Ingrese telefono" name="finc_tlf_finc">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+         <label for="pre">Fecha Inicio:</label>
+              <div class="input-group">
+                <input type="date" class="form-control" id="fincadata.finc_fec_inic" name="fincadata.finc_fec_inic"
+                [ngModel]="fincadata.finc_fec_inic | date:'yyyy-MM-dd'"  >
+              </div>
+        </div> 
+        <div class="col">
+            <label >Administrador</label>
+          <select class="form-control selectpicker" data-live-search="true"
+             [(ngModel)]="seleccionado" >
+                <option *ngFor="let row of listEmpl" title="{{row.EMPL_APE_NOMB}}"  value={{seleccionado}} >
+                    {{row.EMPL_APE_NOMB}}
+                </option>
+          </select> 
+        </div>
+    </div>    
+
+</div>
+
+

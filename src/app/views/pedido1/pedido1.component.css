@@ -1,0 +1,15 @@
+p {
+    font-family: Lato;
+    color: blueviolet;
+  }
+ 
+
+ng-select.custom {
+    border:1px;
+    min-height: 1px;
+    border-radius: 1;
+}
+ng-select.custom .ng-select-container  {            
+    min-height: 5px;
+    border-radius: 1;
+}
